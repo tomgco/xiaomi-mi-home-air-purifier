@@ -1,19 +1,19 @@
 {
-  "name": "iobroker.mihome-vacuum",
+  "name": "iobroker.mihome-air",
   "version": "0.1.0",
   "description": "Proxy for WEB server.",
   "author": {
-    "name": "bluefox",
-    "email": "dogafox@gmail.com"
+    "name": "steinwedel",
+    "email": "github.com@steinwedel.de"
   },
-  "homepage": "https://github.com/ioBroker/ioBroker.mihome-vacuum",
+  "homepage": "https://github.com/ioBroker/ioBroker.mihome-air",
   "keywords": [
     "ioBroker",
-    "mihome-vacuum"
+    "mihome-air"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.mihome-vacuum"
+    "url": "https://github.com/steinwedel/ioBroker.mihome-air"
   },
   "dependencies": {
   },
