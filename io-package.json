@@ -1,6 +1,6 @@
 {
     "common": {
-        "name":                     "mihome-vacuum",
+        "name":                     "mihome-air",
         "version": "0.1.0",
         "news": {
 			"0.1.0": {
@@ -10,16 +10,16 @@
             }
         },
         "title":                    "mihome-vacuum Adapter",
-        "desc":                     "This adapter allows control Xiaomi Vacuum cleaner",
+        "desc":                     "This adapter allows control Xiaomi Air purifier",
         "authors": [
-            "bluefox <dogafox@gmail.com>"
+            "steinwedel <github.com@steinwedel.de>"
         ],
         "license":                  "MIT",
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
         "loglevel":                 "info",
-        "icon":                     "mihome-vacuum.png",
-        "webExtension":             "lib/mihome-vacuum.js",
+        "icon":                     "mihome-air.png",
+        "webExtension":             "lib/mihome-air.js",
         "readme":                   "https://github.com/ioBroker/ioBroker.mihome-vacuum/blob/master/README.md",
         "keywords":                 ["url", "html", "file", "mihome-vacuum"],
         "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.mihome-vacuum/master/admin/mihome-vacuum.png",
