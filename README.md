@@ -1,5 +1,5 @@
 ![Logo](admin/mihome-air.png)
-ioBroker mihome-air purifier adapter
+ioBroker mihome-air adapter
 =================
 
 This adapter allows you control the Xiaomi air purifier.
