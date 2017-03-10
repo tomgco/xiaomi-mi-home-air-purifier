@@ -27,7 +27,7 @@
     "chai": "^3.4.1"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.mihome-vacuum/issues"
+    "url": "https://github.com/steinwedel/ioBroker.mihome-air/issues"
   },
   "main": "main.js",
   "scripts": {
