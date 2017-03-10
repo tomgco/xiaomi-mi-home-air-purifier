@@ -1,5 +1,5 @@
 var srcDir   = __dirname + "/../";
-
+ 
 module.exports = {
     all: {
         src: [
