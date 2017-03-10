@@ -1,5 +1,5 @@
 ![Logo](admin/mihome-air.png)
-ioBroker mihome-vacuum adapter
+ioBroker mihome-air purifier adapter
 =================
 
 This adapter allows you control the Xiaomi air purifier.
@@ -13,8 +13,8 @@ The control commands are 80 bytes long.
 
 ```
 cd /opt/iobroker
-npm install iobroker.mihome-vacuum
-iobroker add mihome-vacuum
+npm install iobroker.mihome-air
+iobroker add mihome-air
 ```
 
 ## Widget
