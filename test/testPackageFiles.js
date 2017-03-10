@@ -1,4 +1,4 @@
-/* jshint -W097 */// jshint strict:false
+/* jshint -W097 */// jshint strict:false 
 /*jslint node: true */
 var expect = require('chai').expect;
 var fs     = require('fs');
