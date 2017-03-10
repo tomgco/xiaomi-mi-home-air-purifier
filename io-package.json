@@ -9,7 +9,7 @@
                 "ru": 				"Первая версия"
             }
         },
-        "title":                    "mihome-vacuum Adapter",
+        "title":                    "mihome-air Adapter",
         "desc":                     "This adapter allows control Xiaomi Air purifier",
         "authors": [
             "steinwedel <github.com@steinwedel.de>"
@@ -20,9 +20,9 @@
         "loglevel":                 "info",
         "icon":                     "mihome-air.png",
         "webExtension":             "lib/mihome-air.js",
-        "readme":                   "https://github.com/ioBroker/ioBroker.mihome-vacuum/blob/master/README.md",
-        "keywords":                 ["url", "html", "file", "mihome-vacuum"],
-        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.mihome-vacuum/master/admin/mihome-vacuum.png",
+        "readme":                   "https://github.com/ioBroker/ioBroker.mihome-air/blob/master/README.md",
+        "keywords":                 ["url", "html", "file", "mihome-air"],
+        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.mihome-air/master/admin/mihome-air.png",
 		"type":                     "hardware",
         "config":{
             "minWidth": 800,
@@ -69,7 +69,7 @@
             "type": "state",
             "common": {
                 "role":  "button",
-                "name":  "Start vacuum",
+                "name":  "Start air",
                 "type":  "boolean",
                 "read":  false,
                 "write": true
@@ -81,7 +81,7 @@
             "type": "state",
             "common": {
                 "role":  "button",
-                "name":  "Pause vacuum",
+                "name":  "Pause air",
                 "type":  "boolean",
                 "read":  false,
                 "write": true
