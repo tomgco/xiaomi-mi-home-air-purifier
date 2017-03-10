@@ -4,7 +4,7 @@
 
 // you have to require the utils module and call adapter function
 var utils     = require(__dirname + '/lib/utils'); // Get common adapter utils
-var adapter   = new utils.Adapter('mihome-vacuum');
+var adapter   = new utils.Adapter('mihome-air');
 var dgram     = require('dgram');
 var miHome    = require("./mihomepacket");
 
