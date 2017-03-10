@@ -20,9 +20,9 @@
         "loglevel":                 "info",
         "icon":                     "mihome-air.png",
         "webExtension":             "lib/mihome-air.js",
-        "readme":                   "https://github.com/ioBroker/ioBroker.mihome-air/blob/master/README.md",
+        "readme":                   "https://github.com/steinwedel/ioBroker.mihome-air/blob/master/README.md",
         "keywords":                 ["url", "html", "file", "mihome-air"],
-        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.mihome-air/master/admin/mihome-air.png",
+        "extIcon":                  "https://raw.githubusercontent.com/steinwedel/ioBroker.mihome-air/master/admin/mihome-air.png",
 		"type":                     "hardware",
         "config":{
             "minWidth": 800,
