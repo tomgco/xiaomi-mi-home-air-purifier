@@ -13,7 +13,7 @@ The control commands are 80 bytes long.
 
 ```
 cd /opt/iobroker
-npm install iobroker.mihome-air
+npm i https://github.com/steinwedel/ioBroker.mihome-air.git
 iobroker add mihome-air
 ```
 
