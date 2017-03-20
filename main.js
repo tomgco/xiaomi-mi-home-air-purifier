@@ -14,7 +14,8 @@ var connected = false;
 var commands  = {};
 var pingInterval;
 var message = "";
-
+var lastmessageid = 0;
+var lastmessagetype = "";
 var packet = new miHome.Packet();
 
 // is called if a subscribed state changes
@@ -79,6 +80,22 @@ adapter.on('ready', main);
 
 var pingTimeout = null;
 
+function sendCommand(cmd, callback) {
+    try {
+        message=cmd;
+        packet.setHelo();
+        var cmdraw=packet.getRaw()
+        server.send(cmdraw, 0, cmdraw.length, adapter.config.port, adapter.config.ip, function (err) {
+            if (err) adapter.log.error('Cannot send command: ' + err);
+            if (typeof callback === 'function') callback(err);
+        });
+    } catch (err) {
+        adapter.log.warn('Cannot send command_: ' + err);
+        if (typeof callback === 'function') callback(err);
+    }
+}
+
+
 function sendPing() {
     pingTimeout = setTimeout(function () {
         pingTimeout = null;
@@ -90,7 +107,8 @@ function sendPing() {
     }, 3000);
 
     try {
-        server.send(commands.ping, 0, commands.ping.length, adapter.config.port, adapter.config.ip, function (err) {
+        lastmessagetype="status";
+        sendCommand('"method":"get_prop","params":["aqi","led","mode","filter1_life","buzzer","favorite_level","temp_dec","humidity","motor1_speed","led_b","child_lock","use_time","purify_volume","act_sleep","sleep_mode","sleep_data_num","sleep_time","average_aqi","app_extra"]', function (err) {
             if (err) adapter.log.error('Cannot send ping: ' + err)
         });
     } catch (e) {
@@ -116,29 +134,13 @@ function str2hex(str) {
     return buf;
 }
 
-function sendCommand(cmd, callback) {
-    try {
-        message=cmd;
-        packet.setHelo();
-        var cmdraw=packet.getRaw()
-        server.send(cmdraw, 0, cmdraw.length, adapter.config.port, adapter.config.ip, function (err) {
-            if (err) adapter.log.error('Cannot send command: ' + err);
-            if (typeof callback === 'function') callback(err);
-        });
-    } catch (err) {
-        adapter.log.warn('Cannot send command_: ' + err);
-        if (typeof callback === 'function') callback(err);
-    }
-}
-
 function main() {
     adapter.setState('info.connection', false, true);
     adapter.config.port         = parseInt(adapter.config.port, 10)         || 54321;
     adapter.config.ownPort      = parseInt(adapter.config.ownPort, 10)      || 56363;
     adapter.config.pingInterval = parseInt(adapter.config.pingInterval, 10) || 20000;
-    packet.setToken(Buffer(adapter.config.token,'hex'));
+    //packet.setToken(Buffer(adapter.config.token,'hex'));
     commands = {
-        ping:   str2hex('21310020ffffffffffffffffffffffffffffffffffffffffffffffffffffffff'),
         start:  '"method":"set_power","params":["on"]',
         pause:  '"method":"set_power","params":["off"]',
         //start:  '"method":"app_start"',
@@ -166,11 +168,13 @@ function main() {
                     connected = true;
                     adapter.log.info('Connected');
                     adapter.setState('info.connection', true, true);
+		    packet.setToken(packet.checksum);
                 }
 
                 if (message.length>0) {
                     try {
-                        packet.setPlainData('{"id":'+packet.msgCounter+','+message+'}');
+                        lastmessageid = packet.msgCounter;
+                        packet.setPlainData('{"id":'+lastmessageid+','+message+'}');
                         packet.msgCounter++;
                         var cmdraw=packet.getRaw();
                         message="";
@@ -185,7 +189,22 @@ function main() {
                 }
             } else {
 		//hier die Antwort zum decodieren
-                adapter.log.warn('server got: ' + msg.length + ' bytes from ' + rinfo.address + ':' + rinfo.port);
+                packet.setRaw(msg);
+                var packetObj = JSON.parse(packet.getPlainData());
+                if (lastmessageid==packetObj['id']) {
+                    if (lastmessagetype==="status") {
+                        if (packetObj['result'][2]==="idle") {
+                            adapter.setForeignState(adapter.namespace + '.state', false, true);
+                            adapter.log.info("****** Power off  *********");
+                        } else {
+                            adapter.setForeignState(adapter.namespace + '.state', true, true);
+                            adapter.log.info("****** Power ON  *********");
+                        }
+                    }
+                }
+                lastmessagetype="";
+                adapter.log.info('Empfangen <<< '+packet.getPlainData()+"<<< "+msg.toString('hex'));
+                //adapter.log.warn('server got: ' + msg.length + ' bytes from ' + rinfo.address + ':' + rinfo.port);
             }
         }
     });
@@ -194,6 +213,8 @@ function main() {
         var address = server.address();
         adapter.log.debug('server started on ' + address.address + ':' + address.port);
     });
+
+    server.bind(53421);
 
     sendPing();
     pingInterval = setInterval(sendPing, adapter.config.pingInterval);
