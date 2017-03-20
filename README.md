@@ -2,12 +2,12 @@
 ioBroker mihome-air adapter
 =================
 
-This adapter allows you control the Xiaomi air purifier.
+This adapter allows you control the Xiaomi air purifier. The adapter and the widget are early alpha status.
 
-### Description
+### Description for the protocol
 See here https://github.com/jghaanstra/com.robot.xiaomi-mi
-
-The control commands are 80 bytes long.
+and here https://github.com/OpenMiHome/mihome-binary-protocol/blob/master/doc/PROTOCOL.md
+Currently the encryption token can be retrieved from the device. On other devices (e.g. vacuum) this is more difficult. I hope this won't be changed in future.
 
 ### Install
 
