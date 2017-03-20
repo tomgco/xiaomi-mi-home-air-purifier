@@ -18,7 +18,7 @@ iobroker add mihome-air
 ```
 
 ## Widget
-![Widget](widgets/img/previewControl.png)
+![Widget](widgets/mihome-air/img/previewControl.png)
 
 ## Changelog
 
