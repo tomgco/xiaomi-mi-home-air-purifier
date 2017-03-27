@@ -13,12 +13,17 @@ const commands = {
   pause: { method: 'set_power', params: ['off'] },
   sleep: { method: 'set_mode', params: ['silent'] },
   auto: { method: 'set_mode', params: ['auto'] },
+  favorite: { method: 'set_mode', params: ['favorite'] },
   buzzer: { method: 'set_buzzer', params: ['on'] },
   silent: { method: 'set_buzzer', params: ['off'] },
-  level1: { method: 'set_custom_mode', params: [38] },
-  level2: { method: 'set_custom_mode', params: [68] },
-  level3: { method: 'set_custom_mode', params: [77] }
+  lightbright: { method: 'set_led_b', params: [0] },
+  lightdim: { method: 'set_led_b', params: [1] },
+  lightoff: { method: 'set_led_b', params: [2] },
+  level1: { method: 'set_level_favorite', params: [0] },
+  level2: { method: 'set_level_favorite', params: [5] },
+  level3: { method: 'set_level_favorite', params: [10] }
 }
+// sendCommand(commands.lightoff)
 
 let queue = []
 const packet = new Packet()
